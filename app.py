@@ -1,6 +1,6 @@
 import dash_bootstrap_components as dbc
 from dash import Dash, Input, Output, dcc, html
-from pages import all_map, country, indicators
+from pages import all_map, country, indicators, rusmap
 
 external_stylesheets = [dbc.themes.QUARTZ]
 app = Dash(__name__, external_stylesheets=external_stylesheets, use_pages=True)
@@ -32,6 +32,7 @@ sidebar = html.Div(
                 dbc.NavLink("Карта мира", href="/", active="exact"),
                 dbc.NavLink("Страны", href="/page-1", active="exact"),
                 dbc.NavLink("Статистика", href="/page-2", active="exact"),
+                dbc.NavLink("Карта России", href="/page-3", active="exact")
             ],
             vertical=True,
             pills=True,
@@ -55,6 +56,8 @@ def render_page_content(pathname):
         return country.layout
     elif pathname == "/page-2":
         return indicators.layout
+    elif pathname == "/page-3":
+        return rusmap.layout
     return html.Div(
         [
             html.H1("404: Not found", className="text-danger"),
